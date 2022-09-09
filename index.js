@@ -2,10 +2,12 @@ const express = require('express');
 const morgan = require("morgan");
 const logger = require("morgan");
 const socket = require('socket.io')
+require("dotenv").config();
 
+const port = process.env.PORT || 3600
 const app = express();
 const server = app.listen(3400, ()=>{
-    console.log('listening on port 3400');
+    console.log(`App is running on port http://localhost:${port}`);
 });
 app.use(logger("dev"));
 app.use(morgan("dev"));
