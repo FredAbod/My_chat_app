@@ -1,4 +1,4 @@
-const socket = io.connect("http://localhost:3400");
+const socket = io.connect("https://chat-app-ayqu.onrender.com");
 
 const message = document.getElementById("message"),
   handle = document.getElementById("handle"),
