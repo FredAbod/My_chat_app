@@ -1,7 +1,7 @@
-const socket = io.connect("https://chat-app-ayqu.onrender.com");
+const socket = io.connect("http://localhost:3400");
 
 const message = document.getElementById("message"),
-  handle = document.getElementById("handle"),
+  user = document.getElementById("user"),
   btn = document.getElementById("send"),
   output = document.getElementById("output"),
   feedback = document.getElementById("feedback");
@@ -9,18 +9,18 @@ const message = document.getElementById("message"),
 btn.addEventListener("click", () => {
   socket.emit("chat", {
     message: message.value,
-    handle: handle.value,
+    user: user.value,
   });
   message.value = "";
 });
 
 message.addEventListener('keypress',() =>{
-        socket.emit('typing', handle.value);
+        socket.emit('typing', user.value);
 })
 
 socket.on("chat", (data) => {
     feedback.innerHTML = "";
-    output.innerHTML += '<p><strong>' + data.handle + ":</strong>" + data.message + "</p>";
+    output.innerHTML += '<p><strong>' + data.user + ":</strong>" + data.message + "</p>";
 });
 
 socket.on('typing', (data)=>{
